@@ -9,8 +9,11 @@ router.route('/:adminame/orders').get(AdminControllers.getOrders);
 router.route('/:adminame/inventories').get(AdminControllers.getInventories);
 
 router.route('/:admin/createOffer').post(AdminControllers.updateOffer);
+router.route('/:admin/createInventory').post(AdminControllers.createInventories);
 
 router.route('/:admin/updateOrder').put(AdminControllers.updateOrder);
+router.route('/:admin/updateInventory').put(AdminControllers.updateInventories);
+
 
 module.exports = router;
 

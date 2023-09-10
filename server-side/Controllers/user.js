@@ -18,7 +18,7 @@ const {orderModel}=require('../Models/ordermodel');
 async function getUserDetails(req, res) {
     try{
         const {username}=req.params.username || req.body.username;
-        const getUser=await userModel.findOne(username).populate('favourites').populate('cart');
+        const getUser=await userModel.findOne(username).populate('favourites');
         if(!getUser) return res.status(404).json({message:'User not found'});
         return res.status(200).json({message:getUser})
     }

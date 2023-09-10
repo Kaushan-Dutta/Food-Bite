@@ -42,6 +42,8 @@ async function getOrders(req,res){
         return res.status(500).json({message: err.message});  
     }
 }
+
+
 async function getInventories(req,res){
     try{
         return res.status(200).json({message:await inventoryModel.find()});   
@@ -50,5 +52,29 @@ async function getInventories(req,res){
         return res.status(500).json({message: err.message});  
     }
 }
+async function createInventories(req,res){
+    try{
+        const {ingredient,amount,thresholdValue}=req.body;
+        const addInventory=new inventoryModel({ingredient,amount,thresholdValue})
+        await addInventory.save();
+        return res.status(200).json({message:'New Inventory added'})   
+    }
+    catch(err){
+        return res.status(500).json({message: err.message});  
+    }
+}
+async function updateInventories(req,res){
+    try{
+        const {ingredient,amount}=req.body;
+        const updateInventory=await inventoryModel.findOne({ingredient},{$set:{amount:amount}});
+        return res.status(200).json({message:'Inventory updated'})   
+    }
+    catch(err){
+        return res.status(500).json({message: err.message});  
+    }
+}
 
-module.exports={getInventories,getOrders,updateOrder, updateOffer,getAdminDetails}
+
+
+module.exports={getInventories,createInventories,updateInventories,
+    getOrders,updateOrder, updateOffer,getAdminDetails}

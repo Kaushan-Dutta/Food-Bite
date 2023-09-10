@@ -1,10 +1,12 @@
 const mongoose=require('mongoose');
 const {userModel}=require('../Models/usermodel')
+const {adminModel}=require('../Models/adminmodel')
+
 const bcrypt=require('bcrypt');
 const jwt = require('jsonwebtoken');
 const otpGenerator=require('otp-generator');
 const nodemailer=require('nodemailer');
-const {transporter,emailBody}=require('../Modules/mailer');
+const  EmailHandler=require('../Modules/mailer');
 
 
 const secret=process.env.JWT_SECRET_KEY;
@@ -16,17 +18,22 @@ const checkUser=async(username)=>{
     return await userModel.findOne({username});
 }
 const checkPassword=async(password)=>{
-    return true
+    var re = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+    return re.test(password);
 }
 async function verifyToken(req,res,next){
     try{
         const token=req.headers.authorization?.split(' ')[1];
         //console.log(token)
+        const entity=req.params.username || req.body.username || req.body.adminame || req.params.adminame;
         if(!token){
             return res.status(401).json({message:'Not authorized'})
         }
         const verifyToken=jwt.verify(token,secret);
         if(!verifyToken){
+            return res.status(401).json({message:'Not authorized'})
+        }
+        if(verifyToken.name!=entity ){
             return res.status(401).json({message:'Not authorized'})
         }
         console.log(verifyToken);
@@ -41,17 +48,28 @@ async function login(req,res){
     try{
         const {email,password}=req.body;
         const user=await userModel.findOne({email:email});
-        if(user==null){
-            return res.status(401).json({message:'User doesnot exist'});
-        }
-        if(await bcrypt.compare(password,user.password)){
+        const admin=await adminModel.findOne({email:email});
+        
+       if(user && await bcrypt.compare(password,user.password)){
 
             const token=jwt.sign({
-                username:user.username,userid:user._id },secret,{expiresIn:'24 hours'});
+                name:user.username,id:user._id },secret,{expiresIn:'24 hours'});
             const refreshtoken=jwt.sign({
-                username:user.username,userid:user._id},secret,{expiresIn:'24 days'});
+                name:user.username,id:user._id},secret,{expiresIn:'24 days'});
 
             return res.status(200).json({message:user,accesstoken:token,refreshtoken:refreshtoken});
+        }
+        if(admin && await bcrypt.compare(password,admin.password)){
+
+            const token=jwt.sign({
+                name:admin.adminame,id:admin._id },secret,{expiresIn:'24 hours'});
+            const refreshtoken=jwt.sign({
+                name:admin.adminame,id:admin._id},secret,{expiresIn:'24 days'});
+
+            return res.status(200).json({message:admin,accesstoken:token,refreshtoken:refreshtoken});
+        }
+        if(user==null && admin==null){
+            return res.status(401).json({message:'Entity doesnot exist'});
         }
         return res.status(401).json({message:'Password doesnot match'});
     }
@@ -61,19 +79,21 @@ async function login(req,res){
 }
 
 async function signup(req,res){
-    const {username,password,email}=req.body;
+    const {username,password,email,phone}=req.body;
     try{
         if(!await checkEmail(email)){
             if(!await checkUser(username)){
                 if(checkPassword(password)){
                     const encrypt = await bcrypt.hash(password,10);
-                    const createUser=new userModel({username,password:encrypt,email});
-                    const info = await transporter.sendMail({
+                    const createUser=new userModel({username,password:encrypt,email,phone});
+                    var signup_emailBody = EmailHandler.mailGenerator.generate(EmailHandler.signup_email());
+
+                    const info = await EmailHandler.transporter.sendMail({
                         from:process.env.NODE_MAILER_FROM, 
                         to: email,
                         subject: "Confirmation Mail", 
                         text: "Thanks for signing", 
-                        html: emailBody,
+                        html: signup_emailBody,
                     });
                     await createUser.save();
                     return res.status(200).json({message:'Confirmation mail is send'});
@@ -104,6 +124,14 @@ async function generateOTP(req,res){
     try{
         req.app.locals.OTP=await otpGenerator.generate(4,{ upperCaseAlphabets: false, specialChars: false,lowerCaseAlphabets:false})
         //console.log(req.app.locals.OTP);
+        var otp_emailBody = EmailHandler.mailGenerator.generate(EmailHandler.otp_email(req.app.locals.OTP));
+        const info = await EmailHandler.transporter.sendMail({
+            from:process.env.NODE_MAILER_FROM, 
+            to: req.body.email, 
+            subject: "Generated OTP", 
+            text: "Reset your password", 
+            html: otp_emailBody,
+        });
         return res.status(200).json({message:req.app.locals.OTP});
     }
     catch(err){
@@ -139,10 +167,10 @@ async function resetSession(req,res){
 async function resetPassword(req,res){
     try{
         if(!req.app.locals.resetSession) return res.status(401).json({message:'Session Expired'});
-        const {username,password} = req.body;
+        const {email,password} = req.body;
 
         const encrypt = await bcrypt.hash(password,10);
-        const resetData=await userModel.updateOne({username},{$set:{password:encrypt}});
+        const resetData=await userModel.updateOne({email},{$set:{password:encrypt}});
 
         req.app.locals.resetSession=false;
         return res.status(200).json({message:resetData})

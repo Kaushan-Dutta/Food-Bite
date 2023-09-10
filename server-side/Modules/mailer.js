@@ -17,29 +17,53 @@ var mailGenerator = new Mailgen({
     theme: 'default',
     product: {
         // Appears in header & footer of e-mails
-        name: 'Mailgen',
-        link: 'https://mailgen.js/'
+        name: 'Food Bite',
+        link: 'https://foodbite.js/'
         // Optional product logo
         // logo: 'https://mailgen.js/img/logo.png'
     }
 });
-var email = {
-    body: {
-        name: 'John Appleseed',
-        intro: 'Welcome to Mailgen! We\'re very excited to have you on board.',
-        action: {
-            instructions: 'To get started with Mailgen, please click here:',
-            button: {
-                color: '#22BC66', // Optional action button color
-                text: 'Confirm your account',
-                link: 'https://mailgen.js/confirm?s=d9729feb74992cc3482b350163a1a010'
+const signup_email=()=>{
+    var email = {
+        body: {
+            name: 'Folk',
+            intro: 'Welcome to Food Bite, have your day with a tasy bite of our pizzas',
+            action: {
+                instructions: 'To get started with Food Bite, please click here:',
+                button: {
+                    color: '#22BC66', // Optional action button color
+                    text: 'Confirm your account',
+                    link: 'https://mailgen.js/confirm?s=d9729feb74992cc3482b350163a1a010'
+                }
+            },
+            outro: 'Need help, or have questions? Just reply to this email, we\'d love to help.'
+        }
+    };
+    return email
+}
+const otp_email=(otp)=>{
+    
+        var email = {
+            body: {
+                name: 'Folk',
+                intro: 'Your OTP for the reset password',
+                action: {
+                    instructions: 'To get started with Food Bite, please click here:',
+                    button: {
+                        color: '#22BC66', // Optional action button color
+                        text: `${otp}`,
+                        
+                    }
+                },
+                outro: 'Need help, or have questions? Just reply to this email, we\'d love to help.'
             }
-        },
-        outro: 'Need help, or have questions? Just reply to this email, we\'d love to help.'
-    }
-};
+        };
+        return email;
+     
+}
+
+
 
 // Generate an HTML email with the provided contents
-var emailBody = mailGenerator.generate(email);
 
-module.exports ={transporter,emailBody};
+module.exports ={transporter,mailGenerator,signup_email,otp_email};

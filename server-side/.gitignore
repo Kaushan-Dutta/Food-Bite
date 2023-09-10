@@ -1,0 +1,6 @@
+#enviorment variables
+.env
+#external dependencies
+node_modules
+#internal files
+package-lock.json

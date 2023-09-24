@@ -1,6 +1,6 @@
 const mongoose=require('mongoose');
 const {adminModel,updateModel,inventoryModel}=require('../Models/adminmodel');
-const {orderModel}=require('../Models/ordermodel');
+const {orderModel,pizzaModel}=require('../Models/ordermodel');
 
 async function getAdminDetails(req, res) {
     try{
@@ -67,14 +67,34 @@ async function updateInventories(req,res){
     try{
         const {ingredient,amount}=req.body;
         const updateInventory=await inventoryModel.findOne({ingredient},{$set:{amount:amount}});
-        return res.status(200).json({message:'Inventory updated'})   
+        return res.status(200).json({message:'Inventory updated'}   )
     }
     catch(err){
         return res.status(500).json({message: err.message});  
     }
 }
 
+async function createizza(req, res){
+    try{
 
+        return res.status(200).json({message:'Inventory updated'}   )
+    }
+    catch(err){
+        return res.status(500).json({message: err.message});  
+    }
+}
+
+async function createPizza(req, res){
+    try{
+        const {name,description,price,image,size,ingredients,heading}=req.body;
+        const createItem=new pizzaModel({name,description,price,image,size,ingredients,heading});
+        await createItem.save();
+        return res.status(200).json({message:'New Pizza Added'}   )
+    }
+    catch(err){
+        return res.status(500).json({message: err.message});  
+    }
+}
 
 module.exports={getInventories,createInventories,updateInventories,
-    getOrders,updateOrder, updateOffer,getAdminDetails}
+    getOrders,updateOrder, updateOffer,getAdminDetails,createPizza}

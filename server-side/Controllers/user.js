@@ -1,7 +1,8 @@
 const mongoose=require('mongoose');
 const {userModel}=require('../Models/usermodel')
-const {customPizzaModel}=require('../Models/ordermodel');
+const {customPizzaModel, pizzaModel}=require('../Models/ordermodel');
 const {orderModel}=require('../Models/ordermodel');
+const {adminModel,inventoryModel,updateModel}=require('../Models/adminmodel');
 
 /* async function verifyUser(req, res, next) {
     try{
@@ -66,10 +67,28 @@ async function userOrders(req,res){
         return res.status(500).json({message: err.message});  
     }
 }
-async function makeOrder(req,res){
-    //list of items
-    //integration of razorpay
-    //update in admin portal
-    //integration of socketio
+async function makeOrder(req, res){
+    try{
+        const {orderContent,address}=req.body;
+        const {username}=req.params.username;
+        let price=0;
+        console.log(username);
+        orderContent.forEach(async(element) => {
+            const getContent=await pizzaModel.findById({_id:element.pizzaId});
+            price+=getContent.price;
+            getContent.ingredient.forEach(async(ele)=>{
+                const getIng=await inventoryModel.findById({_id:ele.ingredientType});
+                getIng.amount-=getContent.amount;
+                await getIng.save();
+            })    
+        });
+        const newOrder=new orderModel({orderedBy:username,orderContent,address,price});
+        await newOrder.save();
+        return res.status(200).json({message:'New order created'}   )
+    }
+    catch(err){
+        return res.status(500).json({message: err.message});  
+    }
 }
+
 module.exports={getUserDetails,createCustomPizzas,getCustomPizzas,addtoFavourite,userOrders,makeOrder};

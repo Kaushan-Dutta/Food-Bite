@@ -53,18 +53,18 @@ async function login(req,res){
        if(user && await bcrypt.compare(password,user.password)){
 
             const token=jwt.sign({
-                name:user.username,id:user._id },secret,{expiresIn:'24 hours'});
+                name:user.username,id:user._id,entity:"user" },secret,{expiresIn:'24 hours'});
             const refreshtoken=jwt.sign({
-                name:user.username,id:user._id},secret,{expiresIn:'24 days'});
+                name:user.username,id:user._id,entity:"user"},secret,{expiresIn:'24 days'});
 
             return res.status(200).json({message:user,accesstoken:token,refreshtoken:refreshtoken});
         }
         if(admin && await bcrypt.compare(password,admin.password)){
 
             const token=jwt.sign({
-                name:admin.adminame,id:admin._id },secret,{expiresIn:'24 hours'});
+                name:admin.adminame,id:admin._id ,entity:"admin"},secret,{expiresIn:'24 hours'});
             const refreshtoken=jwt.sign({
-                name:admin.adminame,id:admin._id},secret,{expiresIn:'24 days'});
+                name:admin.adminame,id:admin._id,entity:"admin"},secret,{expiresIn:'24 days'});
 
             return res.status(200).json({message:admin,accesstoken:token,refreshtoken:refreshtoken});
         }

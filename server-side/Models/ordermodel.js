@@ -22,18 +22,20 @@ const pizzaSchema=new mongoose.Schema({
         type:[Number],required:true} ,
     ingredient:{
         type:[ingredientSchema]
-    }
+    },
+    heading:{type:String}
 })
 const pizzaModel=new mongoose.model('PizzaModel',pizzaSchema);
 
 const orderSchema=new mongoose.Schema({
     orderedBy:{
-        type:mongoose.Schema.Types.ObjectId,required:true,ref:'UserModel'
+        type:mongoose.Schema.Types.String,required:true,ref:'UserModel'
     },
     orderContent:{type:[
         {
             pizzaId:{type:mongoose.Schema.Types.ObjectId,ref:'PizzaModel'},
             quantity:{type:Number,required:true},
+       
         }
     ]},       
     address:{

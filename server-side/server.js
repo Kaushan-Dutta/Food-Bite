@@ -16,7 +16,7 @@ app.get('/testmode',(req,res)=>{
 app.use('/user',require('./Routers/user-routes'));
 app.use('/auth',require('./Routers/auth-routes'));
 app.use('/admin',require('./Routers/admin-routes'));
-
+app.use('/',require('./Routers/public-routes'));
 
 server.listen(7000,()=>{
     console.log('Server Started on port 7000');

@@ -4,15 +4,16 @@ const AuthController=require('../Controllers/authentication');
 
 const router=express.Router();
 
-router.route('/:adminame').get(AuthController.verifyToken,AdminControllers.getAdminDetails);
+router.route('/:adminame').get(AdminControllers.getAdminDetails);
 router.route('/:adminame/orders').get(AdminControllers.getOrders);
 router.route('/:adminame/inventories').get(AdminControllers.getInventories);
 
-router.route('/:admin/createOffer').post(AdminControllers.updateOffer);
-router.route('/:admin/createInventory').post(AdminControllers.createInventories);
+router.route('/:admin/createOffer').post(AuthController.verifyToken,AdminControllers.updateOffer);
+router.route('/:admin/createInventory').post(AuthController.verifyToken,AdminControllers.createInventories);
+router.route('/:admin/createPizza').post(AuthController.verifyToken,AdminControllers.createPizza);
 
-router.route('/:admin/updateOrder').put(AdminControllers.updateOrder);
-router.route('/:admin/updateInventory').put(AdminControllers.updateInventories);
+router.route('/:admin/updateOrder').put(AuthController.verifyToken,AdminControllers.updateOrder);
+router.route('/:admin/updateInventory').put(AuthController.verifyToken,AdminControllers.updateInventories);
 
 
 module.exports = router;

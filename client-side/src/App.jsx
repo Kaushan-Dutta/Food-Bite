@@ -20,8 +20,8 @@ import Cart from './pages/User/Cart';
 import Favourites from './pages/User/Favourites';
 import UserOrders from './pages/User/Orders';
 
-import AdminWrapper from './Wrappers/AdminWrapper';
-import UserWrapper from './Wrappers/UserWrapper';
+import AdminWrapper from './wrappers/AdminWrapper'
+import UserWrapper from './wrappers/UserWrapper'
 
 const App = () => {
   return (

@@ -1,18 +1,20 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 
-const userlogic = () => {
-    const [username,setUsername]=useState();
-    const [password,setPassword]=useState();
-    const [email,setEmail]=useState();
-    const [phone,setPhone]=useState();
-    const [profile,setProfile]=useState();
+export const userlogic = () => {
+    const [username,setUsername]=useState('');
+    const [password,setPassword]=useState('');
+    const [email,setEmail]=useState('');
+    const [phone,setPhone]=useState('');
+    const [address,setAddress]=useState('');
+    const [profile,setProfile]=useState('');
+    const [image,setImage]=useState('');
 
     const inputFields=[
         {
             name:"Username",
             placeholder:"Enter the username",
             type:"text",
-            classname:'',
+            className:'',
             value:username,
             onChange:(e)=>setUsername(e.target.value)
         },
@@ -20,7 +22,7 @@ const userlogic = () => {
             name:"Password",
             placeholder:"Enter the password",
             type:"password",
-            classname:'',
+            className:'',
             value:password,
             onChange:(e)=>setPassword(e.target.value)
         },
@@ -28,7 +30,7 @@ const userlogic = () => {
             name:"Phone No.",
             placeholder:"Your Phone no.",
             type:"number",
-            classname:'',
+            className:'',
             value:phone,
             onChange:(e)=>setPhone(e.target.value)
         },
@@ -36,14 +38,29 @@ const userlogic = () => {
             name:"Email Id",
             placeholder:"Enter the Email Id",
             type:"email",
-            classname:'',
+            className:'',
             value:email,
-            onChange:()=>setEmail(e.target.value)
+            onChange:(e)=>setEmail(e.target.value)
+        },
+        {
+            name:"Address",
+            placeholder:"Enter the address",
+            type:"text",
+            className:'',
+            value:address,
+            onChange:(e)=>setAddress(e.target.value)
         },
         
     ]
-    return(username,password,email,phone,profile,
-        setUsername,setPassword,setEmail,setPhone,setProfile,inputFields)    
+    const handleSubmit=useCallback((e)=>{
+        e.preventDefault();
+        const user={
+            username,password,email,phone,profile
+        }
+        console.log(user);
+    },[username,password,email,phone,profile])
+
+    return {username,password,email,phone,profile,image,setImage,
+        setUsername,setPassword,setEmail,setPhone,setProfile,inputFields,handleSubmit}   
 }
 
-export default userlogic

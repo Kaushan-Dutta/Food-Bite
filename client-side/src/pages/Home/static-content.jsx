@@ -39,24 +39,37 @@ export const Filter_Links=[
         header:"All"
     },
     {
-        header:"All"
+        header:"Vegetarian"
     },
     {
-        header:"All"
+        header:"Meat Lovers"
     },
     {
-        header:"All"
+        header:"Hawaiian"
     },
     {
-        header:"All"
+        header:"Classic Margherita"
     },
     {
-        header:"All"
+        header:"BBQ Chicken Pizza"
     },
     {
-        header:"All"
+        header:"Italian"
     },
     {
-        header:"All"
-    }
+        header:"American"
+    },
+    {
+        header:"Vegan"
+    },
+    {
+        header:"Supreme Pizza"
+    },
+    {
+        header:"Veggie Delight"
+    },
+    {
+        header:"Custom Creations"
+    },
+    
 ]

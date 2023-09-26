@@ -1,3 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Kenia&family=Montserrat:wght@500&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.primary-container{
+    @apply px-[5vw] flex-col flex gap-10
+}
+.flx-row{
+    @apply flex flex-row items-center
+}
+.flx-row-between{
+    @apply  flx-row justify-between  items-center space-x-5
+}
+.flx-row-center{
+    @apply  flx-row justify-center  items-center space-x-5
+}
+.btn-primary{
+    @apply flx-row justify-center items-center text-white bg-base  py-2 rounded-full hover:bg-theme text-xl px-2 font-primary
+}
+.btn-small{
+    @apply flx-row-center  rounded-full text-sm text-white 
+}
+.bar::-webkit-scrollbar{
+    display: none;
+}

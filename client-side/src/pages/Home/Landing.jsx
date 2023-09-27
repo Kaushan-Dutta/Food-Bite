@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import {Filter_Links,} from "./static-content.jsx";
+import PizzaBox from '../../components/PizzaBox.jsx';
 
 const Landing = () => {
   const array=[1,2,3,4,5,6,7]
@@ -63,28 +64,19 @@ const Landing = () => {
            <div className="flx-row-center flex-wrap gap-y-10 gap-x-5 mx-auto ">
                {
                   array.map((obj,id)=>(
-                     <div className='w-[300px] h-[350px] rounded-lg shadow-md p-5 font-primary transition ease-out hover:-translate-y-2'>
-                        <img src="https://static.vecteezy.com/system/resources/previews/021/620/229/non_2x/cute-burger-cartoon-icon-illustration-delicious-cheeseburger-food-icon-concept-illustration-suitable-for-icon-logo-sticker-clipart-free-vector.jpg" className='w-[200px] h-[200px] rounded-md mx-auto'/>
-                        <div className=''>
-                           <p className='text-lg font-header '>Pizza Name</p>
-                           <div className='flx-row-between my-3'>
-                              <p className='text-md font-primary text-primary'>Rs 250</p>
-                              <button className=' w-[100px] py-2 rounded-md  bg-primary text-white'>Add Item</button>
-                           </div>
-                        </div>
-                     </div>
+                     <PizzaBox/>
                   ))
                }
            </div>
        </section>
-       <section id="newsletter">
+      {/*  <section id="newsletter">
          <div className=''>
 
          </div>
          <div className=''>
 
          </div>
-       </section>
+       </section> */}
        
     </div>
   )

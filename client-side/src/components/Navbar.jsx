@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import {Navlinks} from '../route.config.js'
 
 const Navbar = () => {
-  const [entity,setEntity]=useState({name:'admin'});
+  const [entity,setEntity]=useState({name:'user'});
   const [dropbar,setDropbar]=useState(false);
   return (
     <nav className='w-full fixed bg-primary shadow-md p-5 text-white primary-container flx-row-between font-primary text-2xl '>

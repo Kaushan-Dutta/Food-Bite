@@ -24,3 +24,6 @@
 .bar::-webkit-scrollbar{
     display: none;
 }
+.transition-hover{
+    @apply transition ease-out hover:-translate-y-2
+}

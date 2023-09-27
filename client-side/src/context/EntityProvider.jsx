@@ -1,13 +1,19 @@
-import React, { useEffect } from 'react'
-import { Outlet } from 'react-router-dom'
+import React, { useContext,createContext, useState } from 'react'
 
-const EntityProvider = () => {
-  
+const Data=createContext();
+
+const EntityProvider = ({children}) => {
+
+  const [entity,createEntity]=useState();
+  const [authenticated,setAuthenticated]=useState(false);
+  const [loading,setLoading]=useState(true);
+
   return (
-    <div>
-       <Outlet/>
-    </div>
+    <Data.Provider value={{entity,createEntity,authenticated,setAuthenticated,loading,setLoading}}>
+      {children}
+    </Data.Provider>  
   )
 }
 
 export default EntityProvider
+export const useEntity=()=>useContext(Data);

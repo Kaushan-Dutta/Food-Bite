@@ -27,3 +27,6 @@
 .transition-hover{
     @apply transition ease-out hover:-translate-y-2
 }
+.popup-window{
+    @apply w-screen h-screen bg-black bg-opacity-70 fixed z-30 justify-center items-center flex flex-row top-0 left-0
+}

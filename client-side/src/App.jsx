@@ -22,6 +22,9 @@ import UserOrders from './pages/User/Orders';
 
 import AdminWrapper from './Wrappers/AdminWrapper'
 import UserWrapper from './Wrappers/UserWrapper'
+import AuthWrapper from './Wrappers/AuthWrapper';
+
+import Popup from './components/popups/popup';
 
 const App = () => {
   return (
@@ -32,7 +35,7 @@ const App = () => {
           <Route path="/" element={<Landing/>}/>
           
           {/**Auth Routes */}
-          <Route path="/auth">
+          <Route path="/auth" element={<AuthWrapper/>}>
               <Route path="login" element={<Login/>}/>
               <Route path="register" element={<Register/>}/>
               <Route path="forgot-password" element={<ForgotPassword/>}/>
@@ -56,6 +59,7 @@ const App = () => {
               <Route path="favourites" element={<Favourites/>}/>
           </Route>
       </Routes>
+      <Popup/>
       <Footer/>
     </>
   )

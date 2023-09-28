@@ -1,0 +1,75 @@
+pizza veggies:
+
+Mushrooms
+ Bell Peppers
+ Onions
+ Black Olives
+ Green Olives
+ Spinach
+ Tomatoes
+ Artichoke Hearts
+ Jalapeños
+. Red Onions
+ Green Onions
+ Zucchini
+ Eggplant
+ Broccoli
+ Roasted Red Peppers
+ Banana Peppers
+ Pineapple
+ Sun-Dried Tomatoes
+ Arugula
+ Caramelized Onions
+ Fresh Basil
+ Cilantro
+ Cherry Tomatoes
+ Garlic
+ Avocado 
+
+pizza cheese:
+Certainly, here are the names of different types of pizza cheeses:
+
+1. Mozzarella
+2. Parmesan
+3. Provolone
+4. Cheddar
+5. Fontina
+6. Gouda
+7. Gruyère
+8. Blue Cheese
+9. Ricotta
+10. Feta
+11. Goat Cheese
+12. Vegan Cheese
+
+pizza sauce:
+Certainly, here are the names of different types of pizza sauces:
+
+1. Tomato Sauce
+2. Marinara Sauce
+3. Pesto Sauce
+4. Alfredo Sauce
+5. BBQ Sauce
+6. White Sauce
+7. Olive Oil and Garlic Sauce
+8. Buffalo Sauce
+9. Ranch Dressing
+10. Salsa
+11. Hoisin Sauce
+12. Teriyaki Sauce
+
+pizza bases":
+Certainly, here are the names of different types of pizza bases:
+
+1. Thin Crust
+2. Thick Crust or Deep Dish
+3. Stuffed Crust
+4. Neapolitan
+5. Sicilian
+6. Whole Wheat or Whole Grain
+7. Gluten-Free
+8. Cauliflower Crust
+9. Flatbread
+10. Wood-Fired
+11. Mozzarella Crust
+12. Gluten-Free Cauliflower Crust

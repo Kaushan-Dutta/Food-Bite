@@ -1,9 +1,11 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import {Navlinks} from '../route.config.js'
+import { useEntity } from '../context/EntityProvider'
 
 const Navbar = () => {
-  const [entity,setEntity]=useState({name:'user'});
+  const {entity,createEntity}=useEntity();
+
   const [dropbar,setDropbar]=useState(false);
   return (
     <nav className='w-full fixed bg-primary shadow-md p-5 text-white primary-container flx-row-between font-primary text-2xl '>
@@ -21,7 +23,7 @@ const Navbar = () => {
                 <Link to={route.path} key={id} className='hover:text-[#FFA500]'>{route.name}</Link>
              ))}
              <button className='btn-primary w-[150px]'>
-                {entity?<Link>Logout</Link>:<Link to="/auth/register">Login</Link>}
+                {entity?<Link>Logout</Link>:<Link to="/auth/login">Login</Link>}
              </button>
           </div>
 

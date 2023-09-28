@@ -2,12 +2,13 @@ import React, { useEffect,useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import Loading from '../components/Loading';
 
-const UserWrapper = () => {
+const AuthWrapper = () => {
   const [state,setState]=useState(true);
+
   useEffect(()=>{
     const entity=JSON.parse(localStorage.getItem('entity'));
-    if(!entity){
-      window.location.href='/auth/login';
+    if(entity){
+      window.location.href='/';
     }
     setState(false);
   },[])
@@ -19,4 +20,4 @@ const UserWrapper = () => {
   )
 }
 
-export default UserWrapper
+export default AuthWrapper

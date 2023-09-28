@@ -1,5 +1,6 @@
 import React,{useState} from 'react'
 import Searchbox from '../../components/Searchbox';
+import CreateOffer from '../../components/popups/CreateOffer';
 
 const OfferBox=()=>{
   return(
@@ -22,17 +23,21 @@ const OfferBox=()=>{
 }
 const Offer = () => {
   const {searchParams,setSearchParams}=useState();
+  const [state,setState]=useState(false);
+  
   const array=[1,2,3,4,5,6]
   return (
-    <div className='primary-container py-40'>
+    <div className='primary-container py-40 '>
         <header className='text-5xl font-header  text-theme'>Ongoing Offers</header>
-
+        
         <Searchbox text="Search Offers"
              searchParams={searchParams} setSearchParams={setSearchParams}/>
         
         <div className='flx-row-center  flex-wrap'>
             {array.map((obj,id)=><OfferBox key={id}/>)}
         </div>
+        <button className='btn-primary w-[200px] mx-auto' onClick={()=>setState(true)}>Create Offer</button>
+        {state && <CreateOffer/>}
     </div>
   )
 }

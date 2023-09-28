@@ -2,20 +2,22 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import {Filter_Links,} from "./static-content.jsx";
 import PizzaBox from '../../components/PizzaBox.jsx';
+import Banner from '../../assets/banner.png'
 
 const Landing = () => {
   const array=[1,2,3,4,5,6,7]
   return (
     <div className=''>
        
-       <section id="top-banner" className='h-[80vh] space-x-10 bg-primary py-40 primary-container flx-row-between'>
+       <section id="top-banner" className='h-[80vh] space-x-10 bg-primary py-40 primary-container flx-row justify-around'>
            <div className='w-1/2 gap-y-10 flex flex-col text-left'>
               <p className='text-7xl font-header text-theme'>Grab a bite of Pizza</p>
               <p className='text-lg font-primary text-white'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas quasi vero at saepe assumenda eligendi ipsam beatae! Assumenda mollitia alias ad sequi quisquam ut velit. Sunt similique ducimus laboriosam atque.</p>
               <button className='btn-primary w-[200px]'>Our Collection</button>
            </div>
-           <div className='w-1/2'>
-              <img src=""/>
+           <div className='w-1/2 flex flex-row justify-end'>
+              <img className='w-96' src={Banner}/>
+              
            </div>
        </section>
        <section id="offers" className='primary-container my-20 '>

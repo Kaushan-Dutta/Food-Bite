@@ -18,4 +18,5 @@ async function getPizzas(req,res){
         return res.status(500).json({message: err.message});  
     }
 }
+
 module.exports={getPizzas,sendNewsletter};

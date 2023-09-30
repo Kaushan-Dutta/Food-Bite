@@ -25,14 +25,17 @@ import UserWrapper from './Wrappers/UserWrapper'
 import AuthWrapper from './Wrappers/AuthWrapper';
 
 import Popup from './components/popups/popup';
+import EntityWrapper from './Wrappers/EntityWrapper';
 
 const App = () => {
   return (
     <>
       <Navbar/>
+      <div className='min-h-[100vh]'>
       <Routes>
+        <Route path="/" element={<EntityWrapper/>}>
           {/**Public Routes */}
-          <Route path="/" element={<Landing/>}/>
+          <Route index element={<Landing/>}/>
           
           {/**Auth Routes */}
           <Route path="/auth" element={<AuthWrapper/>}>
@@ -58,7 +61,9 @@ const App = () => {
               <Route path="cart" element={<Cart/>}/>
               <Route path="favourites" element={<Favourites/>}/>
           </Route>
+        </Route>
       </Routes>
+      </div>
       <Popup/>
       <Footer/>
     </>

@@ -10,6 +10,7 @@ const Orders = () => {
         <header className='text-5xl font-header text-theme text-center'>Update the orders</header>
         <Searchbox text="Search Order"
              searchParams={searchParams} setSearchParams={setSearchParams}/>
+             
         <div className='flex flex-col gap-5 mx-auto w-3/4'>
             {array.map((obj,id)=>(
               <OrderBox key={id}/>

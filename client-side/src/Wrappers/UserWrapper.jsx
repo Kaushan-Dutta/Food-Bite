@@ -1,20 +1,32 @@
 import React, { useEffect,useState } from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
 import Loading from '../components/Loading';
+import { useEntity } from '../context/EntityProvider';
+
 
 const UserWrapper = () => {
-  const [state,setState]=useState(true);
-  useEffect(()=>{
-    const entity=JSON.parse(localStorage.getItem('entity'));
-    if(!entity){
-      window.location.href='/auth/login';
-    }
-    setState(false);
-  },[])
-  if(state) return (<Loading/>)
+  const {entity,loading,setLoading}=useEntity();
+  /* useEffect(()=>{
+    setLoading(true);
+      //console.log(entity.entity);
+    
+      if(entity && entity.entity=='user'){
+        //window.location.href='/';
+        console.log(entity);
+      }
+      else{
+        window.location.href='/';
+      }
+  
+    setLoading(false);
+    
+  },[entity,navigate])
+  
+  if(loading) return (<Loading/>) */
+  
   return (
     <div>
-       <Outlet/>
+       {entity?.entity=="user"?<Outlet/>:<Loading/>}
     </div>
   )
 }

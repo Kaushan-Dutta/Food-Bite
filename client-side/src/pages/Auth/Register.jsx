@@ -2,9 +2,10 @@ import React,{useState,useCallback} from 'react'
 import {useDropzone} from 'react-dropzone';
 import {userlogic} from '../../logic/user.logic'
 import { Link } from 'react-router-dom'
+import Loading from '../../components/Loading';
 
 const Register = () => {
-  const {profile,setProfile,image,setImage,inputFields,handleSubmit}=userlogic();
+  const {profile,setProfile,image,setImage,inputFields,handleSubmit,loading}=userlogic();
 
   const onDrop=useCallback(async(acceptedFiles)=>{
     setProfile(acceptedFiles[0]);
@@ -13,6 +14,8 @@ const Register = () => {
   
   const {getRootProps, getInputProps, isDragActive} = useDropzone(
     {onDrop,type:'image/jpeg,image/png,image/jpg'});
+  
+  if(loading) return <Loading/>
   
   return (
     <div className='primary-container py-40'>

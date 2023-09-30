@@ -18,24 +18,24 @@ const Navbar = () => {
              {Navlinks.filter((obj)=>                
                 obj.showOnNav              
              ).filter((obj)=>(
-                obj.protected?(entity?.name==obj.author?true:false):true
+                obj.protected?(entity?.entity==obj.author?true:false):true
              )).map((route,id)=>(
                 <Link to={route.path} key={id} className='hover:text-[#FFA500]'>{route.name}</Link>
              ))}
              <button className='btn-primary w-[150px]'>
-                {entity?<Link>Logout</Link>:<Link to="/auth/login">Login</Link>}
+                {entity?<Link onClick={()=>{localStorage.removeItem('foodbite');window.location.href="/";}}>Logout</Link>:<Link to="/auth/login">Login</Link>}
              </button>
           </div>
 
           <div className=''>
               {entity && (
-                  <img src="https://api.dicebear.com/7.x/identicon/svg?seed=Pumpkin" className='w-[50px] h-[50px] rounded-full cursor-pointer' onClick={()=>setDropbar(!dropbar)}/>
+                  <img src={entity?.entity=='user'?(entity?.user.profile):(entity?.admin.profile)} className='w-[55px] h-[50px]  rounded-full cursor-pointer' onClick={()=>setDropbar(!dropbar)}/>
               )}
               <div className={`${dropbar?'flex flex-col':'hidden'} w-[170px] p-5 rounded-lg bg-theme gap-y-3 text-md absolute -translate-x-20 translate-y-5`}>
                 {Navlinks.filter((obj)=>                
                     obj.showOnDrop              
                 ).filter((obj)=>(
-                    obj.protected?(entity?.name==obj.author?true:false):true
+                    obj.protected?(entity?.entity==obj.author?true:false):true
                 )).map((route,id)=>(
                     <Link to={route.path} key={id} className='hover:text-primary'>{route.name}</Link>
                 ))}

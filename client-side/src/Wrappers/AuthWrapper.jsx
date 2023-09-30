@@ -6,7 +6,7 @@ const AuthWrapper = () => {
   const [state,setState]=useState(true);
 
   useEffect(()=>{
-    const entity=JSON.parse(localStorage.getItem('entity'));
+    const entity=JSON.parse(localStorage.getItem('foodbite'));
     if(entity){
       window.location.href='/';
     }

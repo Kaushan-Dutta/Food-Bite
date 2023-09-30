@@ -1,11 +1,11 @@
 import React from 'react'
 
-const CreateCustomPizza = () => {
+const CreateCustomPizza = ({state,setState}) => {
   return (
     <div className='popup-window'>
       <div className='w-1/3 bg-slate-100 rounded-lg shadow-lg p-10'>
           <div className='text-right'>
-            <button className='justify-end'>X</button>
+            <button className='justify-end' onClick={()=>setState(false)}>X</button>
           </div>
           <header className='text-5xl font-header  text-theme'>Create Custom Pizza </header>
 

@@ -1,10 +1,13 @@
 import React,{useState} from 'react'
 import {authlogic} from '../../logic/entity-auth.logic'
 import { Link } from 'react-router-dom'
+import Loading from '../../components/Loading'
+import { toast } from "react-hot-toast";
+
 
 const Register = () => {
-  const {inputFields,handleSubmit}=authlogic();
-  
+  const {inputFields,handleSubmit,loading}=authlogic();
+  if(loading) return <Loading/>
    
   return (
     <div className='primary-container py-40'>

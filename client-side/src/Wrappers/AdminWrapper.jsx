@@ -1,22 +1,25 @@
 import React, { useEffect,useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import Loading from '../components/Loading'
+import { useEntity } from '../context/EntityProvider'
 
 const AdminWrapper = () => {
 
-  const [state,setState]=useState(true);
-  useEffect(()=>{
-    const entity=JSON.parse(localStorage.getItem('entity'));
-    if(!entity){
-      window.location.href='/auth/login';
+  const {entity}=useEntity();
+  /* useEffect(()=>{
+    setLoading(true);
+
+    if(entity?.entity!='admin'){
+      window.location.href='/';
     }
-    setState(false);
+    setLoading(false);
   },[])
   
-  if(state) return (<Loading/>)
+  if(loading) return (<Loading/>) */
+  
   return (
     <div>
-       <Outlet/>
+       {entity?.entity=="admin"?<Outlet/>:<Loading/>}
     </div>
   )
 }

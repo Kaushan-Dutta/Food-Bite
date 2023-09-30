@@ -45,6 +45,7 @@ async function getOrders(req,res){
 
 
 async function getInventories(req,res){
+//console.log("cscjkj")
     try{
         return res.status(200).json({message:await inventoryModel.find()});   
     }

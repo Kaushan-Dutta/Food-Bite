@@ -4,7 +4,7 @@ import { Footer_Links,Social_Links } from '../pages/Home/static-content';
 
 const Footer = () => {
   return (
-    <footer className='w-full bg-primary shadow-md py-10 text-white primary-container  font-primary text-2xl '>
+    <footer className='w-full bg-primary shadow-md py-10 text-white primary-container  font-primary text-2xl bottom-0'>
           <div className='flx-row-between border-white py-10 border-b-2'>
             <div className='w-1/5'>
                <Link to="/" className='font-logo text-5xl '>Food Bite</Link>

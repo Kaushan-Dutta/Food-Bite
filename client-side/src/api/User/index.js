@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react'
 import axios from 'axios';
 import { toast } from "react-hot-toast";
 import {v4 as uuidv4} from 'uuid';
-import storage from './appwrite.config';
+import storage from '../Configure/appwrite.config.js'
 
 
 const API = axios.create({

@@ -7,7 +7,7 @@ const ingredientSchema=new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,ref:'InventoryModel'
     },
     amount:{
-        type:Number,required:true }
+        type:Number,required:true,default:1 }
 })
 const pizzaSchema=new mongoose.Schema({
     name:{

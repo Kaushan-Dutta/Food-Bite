@@ -87,7 +87,7 @@ const CreatePizza = ({state, setState}) => {
                 <p>Ingredients:</p>
                 <div className='w-full p-2 list-none flex-wrap'>
                   {inventories.length>0 && inventories.map((obj,id)=>(
-                      <li key={id}><input type="checkbox" onChange={()=>handleIngredient(obj._id)} checked={ingredients.includes(obj._id).toString}/>&nbsp;{obj.ingredient}</li>
+                      <li key={id}><input type="checkbox" onChange={()=>handleIngredient(obj._id)} checked={ingredients.includes(obj._id)}/>&nbsp;{obj.ingredient}</li>
                   ))}
                 </div>
                 <button type="submit" className='btn-primary bg-theme w-[200px]'>Create Pizza</button>

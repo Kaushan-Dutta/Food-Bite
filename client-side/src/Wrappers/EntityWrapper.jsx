@@ -10,7 +10,7 @@ const EntityWrapper = () => {
     const loadContents=async()=>{
                 //setLoading(true);
                 const res=JSON.parse(localStorage.getItem('foodbite'));
-                //console.log(res)
+                console.log(res)
                 if(res){
                 try{
                 const getEntity=await axios.get('http://localhost:7000',{headers:{

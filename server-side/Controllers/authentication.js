@@ -22,9 +22,11 @@ const checkPassword=async(password)=>{
     return re.test(password);
 }
 async function verifyToken(req,res,next){
+    
+
     try{
         const token=req.headers.authorization?.split(' ')[1];
-        //console.log(token)
+        //console.log(token);
         //const entity=req.params.username || req.body.username || req.body.adminame || req.params.adminame;
         if(!token){
             return res.status(401).json({message:'Not authorized'})

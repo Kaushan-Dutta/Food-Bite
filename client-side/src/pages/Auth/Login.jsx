@@ -1,12 +1,12 @@
 import React,{useState} from 'react'
-import {authlogic} from '../../logic/entity-auth.logic'
+import {LoginLogic} from '../../api/Entity/index';
 import { Link } from 'react-router-dom'
 import Loading from '../../components/Loading'
 import { toast } from "react-hot-toast";
 
 
 const Register = () => {
-  const {inputFields,handleSubmit,loading}=authlogic();
+  const {inputFields,entitylogin,loading}=LoginLogic();
   if(loading) return <Loading/>
    
   return (
@@ -15,7 +15,7 @@ const Register = () => {
             <header className='text-5xl font-header  text-theme text-center my-5'>Welcome to Food Bite</header>
             <div className="flx-row-center">
                   
-                  <form className='w-2/3 my-5' onSubmit={handleSubmit}>
+                  <form className='w-2/3 my-5' onSubmit={entitylogin}>
                     {inputFields.map((obj,id)=>(
                         <div  key={id}>
                             <label htmlFor=''>{obj.name}</label>

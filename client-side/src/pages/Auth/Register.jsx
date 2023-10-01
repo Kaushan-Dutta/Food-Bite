@@ -1,11 +1,11 @@
 import React,{useState,useCallback} from 'react'
 import {useDropzone} from 'react-dropzone';
-import {userlogic} from '../../logic/user.logic'
+import {SignupLogic} from '../../api/User/UserSignup.logic';
 import { Link } from 'react-router-dom'
 import Loading from '../../components/Loading';
 
 const Register = () => {
-  const {profile,setProfile,image,setImage,inputFields,handleSubmit,loading}=userlogic();
+  const {profile,setProfile,image,setImage,inputFields,usersignup,loading}=SignupLogic();
 
   const onDrop=useCallback(async(acceptedFiles)=>{
     setProfile(acceptedFiles[0]);
@@ -31,7 +31,7 @@ const Register = () => {
                     </div>
                   </div>
                   
-                  <form className='w-2/3 my-5' onSubmit={handleSubmit}>
+                  <form className='w-2/3 my-5' onSubmit={usersignup}>
                     {inputFields.map((obj,id)=>(
                         <div  key={id}>
                             <label htmlFor=''>{obj.name}</label>

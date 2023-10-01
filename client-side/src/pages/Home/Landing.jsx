@@ -3,9 +3,13 @@ import { Link } from 'react-router-dom'
 import {Filter_Links,} from "./static-content.jsx";
 import PizzaBox from '../../components/PizzaBox.jsx';
 import Banner from '../../assets/banner.png'
+import { fetchData } from '../../api/index.js';
+import Loading from '../../components/Loading.jsx';
 
 const Landing = () => {
   const array=[1,2,3,4,5,6,7]
+  const {loading,pizza}=fetchData();
+
   return (
     <div className=''>
        
@@ -65,9 +69,11 @@ const Landing = () => {
           
            <div className="flx-row-center flex-wrap gap-y-10 gap-x-5 mx-auto ">
                {
-                  array.map((obj,id)=>(
-                     <PizzaBox/>
-                  ))
+                  loading? <Loading/>:
+                     pizza.map((obj,id)=>(
+                        <PizzaBox key={id} obj={obj}/>
+                     ))
+                  
                }
            </div>
        </section>

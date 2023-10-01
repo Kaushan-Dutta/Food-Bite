@@ -10,7 +10,7 @@ const API = axios.create({
     },
 });
 
-export const authlogic = () => {
+export const LoginLogic = () => {
     const navigate=useNavigate();
 
     const [password,setPassword]=useState('');
@@ -39,7 +39,7 @@ export const authlogic = () => {
     ]
     
       
-    const handleSubmit=useCallback(async(e)=>{
+    const entitylogin=async(e)=>{
         e.preventDefault();
         setLoading(true);
         const entity={
@@ -57,13 +57,7 @@ export const authlogic = () => {
         }
         setLoading(false);
 
-    },[password,email])
+    }
 
-    return {password,email,setPassword,setEmail,loading,setLoading,inputFields,handleSubmit}   
+    return {password,email,setPassword,setEmail,loading,setLoading,inputFields,entitylogin}   
 }
-/* 
-
-export const registerUser = (formData) => API.post("/auth/register", formData);
-export const loginUser = (formData) => API.post("/auth/login", formData);
-
- */

@@ -11,7 +11,7 @@ const API = axios.create({
       "Content-Type": "application/json",
     },
 });
-export const userlogic = () => {
+export const SignupLogic = () => {
     const [username,setUsername]=useState('');
     const [password,setPassword]=useState('');
     const [email,setEmail]=useState('');
@@ -64,8 +64,8 @@ export const userlogic = () => {
         },
         
     ]
-    const handleSubmit=useCallback(async(e)=>{
-        e.preventDefault();
+    const usersignup=async(e)=>{
+        e?.preventDefault();
         setLoading(true);
         const user={
             username,password,email,phone,profile
@@ -88,9 +88,9 @@ export const userlogic = () => {
             toast.error("Sign Up Error");
         }
         setLoading(false);
-    },[username,password,email,phone,profile])
+    }
 
     return {username,password,email,phone,profile,image,loading,setLoading,setImage,
-        setUsername,setPassword,setEmail,setPhone,setProfile,inputFields,handleSubmit}   
+        setUsername,setPassword,setEmail,setPhone,setProfile,inputFields,usersignup}   
 }
 

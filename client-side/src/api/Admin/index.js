@@ -1,12 +1,11 @@
-import { Client, Storage } from "appwrite";
+import axios from 'axios';
+const API = 
+   axios.create({
+    baseURL: import.meta.env.VITE_APP_BACKEND_URL,
+    headers: {
+        authorization: `Bearer ${JSON.parse(localStorage.getItem('foodbite')).token}`
+    },
+    
+   });
 
-const client = new Client();
-
-const storage = new Storage(client);
-
-client
-    .setEndpoint('https://cloud.appwrite.io/v1') // Your API Endpoint
-    .setProject(import.meta.env.VITE_APP_APPWRITE_PROJECT_KEY) 
-;
-export default storage;
-
+export default  API

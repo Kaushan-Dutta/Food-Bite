@@ -2,13 +2,7 @@ const mongoose=require('mongoose');
 
 require('../connectDb');
 
-const ingredientSchema=new mongoose.Schema({
-    ingredientType:{
-        type:mongoose.Schema.Types.ObjectId,ref:'InventoryModel'
-    },
-    amount:{
-        type:Number,required:true,default:1 }
-})
+
 const pizzaSchema=new mongoose.Schema({
     name:{
         type:String,required:true},
@@ -19,9 +13,9 @@ const pizzaSchema=new mongoose.Schema({
     image:{
         type:String },
     size:{
-        type:[Number],required:true} ,
+        type:String,required:true} ,
     ingredient:{
-        type:[ingredientSchema]
+        type:[mongoose.Schema.Types.ObjectId],ref:'InventoryModel'
     },
     heading:{type:String}
 })

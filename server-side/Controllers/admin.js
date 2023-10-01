@@ -86,13 +86,15 @@ async function createizza(req, res){
 }
 
 async function createPizza(req, res){
+    //console.log(req.body);
     try{
-        const {name,description,price,image,size,ingredients,heading}=req.body;
-        const createItem=new pizzaModel({name,description,price,image,size,ingredients,heading});
+        const {name,description,price,image,size,ingredient,heading}=req.body;
+        const createItem=new pizzaModel({name,description,price,image,size,ingredient,heading});
         await createItem.save();
         return res.status(200).json({message:'New Pizza Added'}   )
     }
     catch(err){
+        console.log(err);
         return res.status(500).json({message: err.message});  
     }
 }
